@@ -1,0 +1,2 @@
+module Insales #:nodoc:
+end

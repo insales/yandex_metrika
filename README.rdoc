@@ -1,0 +1,21 @@
+= Yandex.Metrika
+
+This plugin enables Yandex.Metrika support in your application.
+Add:
+    Insales::YandexMetrika.tracker_id = '227250'
+
+to your <tt>config/environment.rb</tt>, inserting your own tracker id. This
+can be discovered by looking at the value assigned to +Ya.Metrika+ in the
+Javascript code.
+And:
+    after_filter :yandex_metrika_code
+
+
+
+Simple. :-)
+
+
+Note: You will need to have the mocha gem installed to run the tests for this
+plugin.
+
+Copyright (c) 2006-2008 Rubaidh Ltd, released under the MIT license.
