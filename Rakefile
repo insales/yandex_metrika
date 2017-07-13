@@ -1,8 +1,6 @@
 require 'rake'
 require 'rake/testtask'
-require 'rake/rdoctask'
-require 'rake/gempackagetask'
-require 'rcov/rcovtask'
+require 'rdoc/task'
 require 'rubyforge'
 
 desc 'Default: run unit tests.'
@@ -17,12 +15,6 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
-Rcov::RcovTask.new do |t|
-  t.test_files = FileList["test/**/*_test.rb"]
-  t.verbose = true
-  t.rcov_opts = ["-x", "^/"]
-end
-
 desc 'Generate documentation for the yandex_metrika plugin.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
@@ -33,18 +25,6 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
 end
 
 gem_spec = eval(File.read('yandex_metrika.gemspec'))
-
-Rake::GemPackageTask.new(gem_spec) do |p|
-  p.need_tar = false
-  p.need_zip = false
-end
-
-desc 'Package and upload the release to rubyforge.'
-task :release => [:clean, :package] do |t|
-  rubyforge = RubyForge.new.configure
-  rubyforge.login
-  rubyforge.add_release gem_spec.rubyforge_project, gem_spec.name, gem_spec.version.to_s, "pkg/#{gem_spec.name}-#{gem_spec.version}.gem"
-end
 
 begin
   gem 'ci_reporter'
