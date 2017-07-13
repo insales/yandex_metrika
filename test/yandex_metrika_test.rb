@@ -1,7 +1,5 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
-require 'test/unit'
-require 'rubygems'
-require 'mocha'
+
 Rails.env = 'test'
 
 class TestMixin
@@ -21,8 +19,12 @@ class TestMixin
   end
 
   # override the mixin's method
-  def yandex_metrika_code
-    "Yandex.Metrika"
+  def yandex_metrika_code options
+    "Yandex Metrika"
+  end
+
+  def append_to_body regex, content
+    response.body = response.body.gsub regex, content
   end
 end
 
