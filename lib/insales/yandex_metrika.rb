@@ -1,6 +1,4 @@
-require 'active_support'
-require 'action_pack'
-require 'action_view'
+require 'rails'
 
 module Insales # :nodoc:
   # This module gets mixed in to ActionController::Base
@@ -158,5 +156,4 @@ HTML
 
     end
   end
-
 end

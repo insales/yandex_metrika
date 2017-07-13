@@ -3,6 +3,7 @@ spec = Gem::Specification.new do |s|
   s.version           = '1.0.0'
   s.date              = "2009-09-12"
   s.has_rdoc          = true
+  s.authors           = ["Andrey 'Zed' Zaikin".freeze]
   s.summary           = "[Rails] Easily enable Yandex Metrika support in your Rails application."
 
   s.description = 'By default this gem will output yandex.metrika code for' +
@@ -12,13 +13,15 @@ spec = Gem::Specification.new do |s|
                   'to your `config/environment.rb`, inserting your own tracker id.'
                   'This can be discovered by looking at the value assigned to +Ya.Metrika+' +
                   'in the Javascript code.'
-  
+
   s.files = %w( CREDITS MIT-LICENSE README.rdoc Rakefile rails/init.rb
                 test/yandex_metrika_test.rb
                 test/test_helper.rb
                 lib/insales.rb
                 lib/insales/yandex_metrika.rb)
+  s.require_paths = ["lib".freeze]
 
-  s.add_dependency 'actionpack'
-  s.add_dependency 'active_support'
+  s.add_runtime_dependency 'rails'
+
+  s.add_development_dependency 'mocha'
 end
