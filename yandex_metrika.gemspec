@@ -2,7 +2,6 @@ spec = Gem::Specification.new do |s|
   s.name              = 'yandex_metrika'
   s.version           = '1.0.0'
   s.date              = "2009-09-12"
-  s.has_rdoc          = true
   s.authors           = ["Andrey 'Zed' Zaikin".freeze]
   s.summary           = "[Rails] Easily enable Yandex Metrika support in your Rails application."
 
