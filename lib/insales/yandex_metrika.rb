@@ -75,7 +75,6 @@ module Insales # :nodoc:
     end
 
     def self.counter(options)
-      additional_javascript = options.delete(:additional_javascript)
       code = <<-HTML
 <!-- Yandex.Metrika counter -->
 
@@ -109,7 +108,6 @@ module Insales # :nodoc:
 <script type="text/javascript">
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push(#{options.to_json});
-  #{additional_javascript}
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/#{tracker_id}" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
