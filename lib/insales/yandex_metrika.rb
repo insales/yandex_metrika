@@ -27,9 +27,6 @@ module Insales # :nodoc:
   # The core functionality to connect a Rails application
   # to a Yandex Metrika installation.
   class YandexMetrika
-
-    ECOMMERCE_DATA_CONTAINER = "dataLayer"
-
     @@tracker_id = nil
     ##
     # :singleton-method:
@@ -76,34 +73,20 @@ module Insales # :nodoc:
 
     def self.counter(options)
       code = <<-HTML
+
 <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-<script type="text/javascript">
-(function (d, w, c) {
-    (w[c] = w[c] || []).push(function() {
-        try {
-            w.yaCounter#{tracker_id} = new Ya.Metrika(
-                   {id:#{tracker_id},
-                    webvisor:true,
-                    clickmap:true,
-                    ecommerce:#{ECOMMERCE_DATA_CONTAINER},
-                    trackLinks:true,
-                    accurateTrackBounce:true}
-                  );
-        } catch(e) { }
-    });
-
-    var n = d.getElementsByTagName("script")[0],
-        s = d.createElement("script"),
-        f = function () { n.parentNode.insertBefore(s, n); };
-    s.type = "text/javascript";
-    s.async = true;
-    s.src = "https://mc.yandex.ru/metrika/watch.js";
-
-    if (w.opera == "[object Opera]") {
-        d.addEventListener("DOMContentLoaded", f, false);
-    } else { f(); }
-})(document, window, "yandex_metrika_callbacks");
+   ym(#{tracker_id}, "init", {
+        webvisor:true,
+        ecommerce:dataLayer,
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
 </script>
 <script type="text/javascript">
   window.dataLayer = window.dataLayer || [];
