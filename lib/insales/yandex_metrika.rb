@@ -27,6 +27,7 @@ module Insales # :nodoc:
   # The core functionality to connect a Rails application
   # to a Yandex Metrika installation.
   class YandexMetrika
+    ECOMMERCE_DATA_CONTAINER = "dataLayer".freeze
     @@tracker_id = nil
     ##
     # :singleton-method:
@@ -82,7 +83,7 @@ module Insales # :nodoc:
 
    ym(#{tracker_id}, "init", {
         webvisor:true,
-        ecommerce:dataLayer,
+        ecommerce:#{ECOMMERCE_DATA_CONTAINER},
         clickmap:true,
         trackLinks:true,
         accurateTrackBounce:true
